@@ -1,0 +1,33 @@
+﻿@using PL.BCE.Data
+@model PL.BCE.Data.Employee
+
+@{
+    ViewBag.Title = "AddDependent";
+    Person newDependent = new Person();
+}
+
+<h2>Add A Dependent</h2>
+
+@using (Html.BeginForm("CreateDependent", "BenefitEstimator", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(m => newDependent);
+
+    @Html.HiddenFor(m => m.FirstName)
+    @Html.HiddenFor(m => m.LastName)
+    @Html.HiddenFor(m => m.SalaryPerPeriod)
+    @Html.HiddenFor(m => m.PeriodType)
+    @Html.HiddenFor(m => newDependent.PersonType, new { @Value = PersonTypes.Dependent })
+
+    if (Model?.Dependents?.Any() ?? false)
+    {
+        for (int i = 0; i < Model.Dependents.Count; i++)
+        {
+            @Html.HiddenFor(m => Model.Dependents[i].FirstName)
+            @Html.HiddenFor(m => Model.Dependents[i].LastName)
+            @Html.HiddenFor(m => Model.Dependents[i].PersonType)
+            @Html.HiddenFor(m => Model.Dependents[i].Identifier)
+        }
+    }
+}

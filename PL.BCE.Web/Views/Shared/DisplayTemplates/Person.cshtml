@@ -1,0 +1,45 @@
+﻿@model PL.BCE.Data.Person
+
+@{
+    ViewBag.Title = "Person";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonType)
+        </dd>
+        
+        @if (Model.BenefitDetail != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.BenefitDetail.AmountPerYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BenefitDetail.AmountPerYear)
+            </dd>
+        }
+
+    </dl>
+</div>

@@ -1,0 +1,49 @@
+﻿@model PL.BCE.Data.BenefitCostSummary
+
+@{
+    ViewBag.Title = "ViewEstimate";
+}
+
+<h2>Benefit Cost Summary</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    @Html.DisplayFor(m => m.Employee)
+
+    @if (Model?.Employee?.Dependents?.Any() ?? false)
+    {
+        <h3>Dependent Detail</h3>
+        @Html.DisplayFor(m => m.Employee.Dependents)
+    }
+    <br />
+    <br />
+    <hr />
+    <h2>Estimated Cost Per Paycheck</h2>
+    <dl class="dl-horizontal">
+        <dt style="white-space: normal;">
+            @Html.DisplayNameFor(m => m.Employee.SalaryPerPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.Employee.SalaryPerPeriod)
+        </dd>
+        <dt style="white-space: normal;">
+            @Html.DisplayNameFor(model => model.TotalPerPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPerPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Estimated Net Pay")
+        </dt>
+        <dd>
+            @Html.Raw($"{Math.Round(Model.Employee.SalaryPerPeriod - Model.TotalPerPeriod, 2, MidpointRounding.AwayFromZero):C2}")
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Start Over", "Index")
+</p>

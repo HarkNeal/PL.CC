@@ -1,0 +1,38 @@
+﻿@model PL.BCE.Data.Employee
+
+@{
+    ViewBag.Title = "GenerateEstimate";
+}
+
+<h2>GenerateEstimate</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryPerPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryPerPeriod)
+        </dd>
+
+    </dl>
+</div>

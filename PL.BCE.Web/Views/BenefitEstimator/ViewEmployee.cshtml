@@ -1,0 +1,52 @@
+﻿@model PL.BCE.Data.Employee
+
+@{
+    ViewBag.Title = "ViewEmployee";
+}
+
+<h2>Employee Detail</h2>
+
+@using (Html.BeginForm("NextStep", "BenefitEstimator", FormMethod.Post))
+{
+    @Html.DisplayForModel()
+    if (Model?.Dependents?.Any() ?? false)
+    {
+        @Html.DisplayFor(m => m.Dependents)
+    }
+
+    @Html.HiddenFor(m => m.FirstName)
+    @Html.HiddenFor(m => m.LastName)
+    @Html.HiddenFor(m => m.PeriodType)
+    @Html.HiddenFor(m => m.PersonType)
+    @Html.HiddenFor(m => m.SalaryPerPeriod)
+
+    if (Model?.Dependents?.Any() ?? false)
+    {
+        for (int i = 0; i < Model.Dependents.Count; i++)
+        {
+            @Html.HiddenFor(m => Model.Dependents[i].FirstName)
+            @Html.HiddenFor(m => Model.Dependents[i].LastName)
+            @Html.HiddenFor(m => Model.Dependents[i].PersonType)
+            @Html.HiddenFor(m => Model.Dependents[i].Identifier)
+        }
+    }
+
+    <table id="tblButtons">
+        <tr>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" name="ActionButton" value="Add Dependent" class="btn btn-default" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Generate Estimate" class="btn btn-default" name="ActionButton" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+}
